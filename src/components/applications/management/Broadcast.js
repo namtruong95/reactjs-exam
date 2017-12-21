@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 export default class Broadcast extends Component {
   render() {
@@ -6,6 +6,6 @@ export default class Broadcast extends Component {
       <div>
         <h1>Broadcast</h1>
       </div>
-    );
+    )
   }
 }

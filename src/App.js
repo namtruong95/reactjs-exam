@@ -1,32 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom"
 
-import Routes from "./Routes";
+import Routes from "./Routes"
 
 class App extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      isAuthenticated: false,
-      isAuthenticating: true
-    };
+      isAuthenticated: false
+    }
+  }
+
+  userHasAuthenticated = (authenticated) => {
+    this.setState({ isAuthenticated: authenticated });
   }
 
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
-    };
+    }
 
     return (
       <div>
         <Routes childProps={childProps} />
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(App);
+export default withRouter(App)

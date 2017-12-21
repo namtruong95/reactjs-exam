@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
+import { login } from '../../actions/auth';
 
-    this.state = {
-      isLoading: false,
-      email: '',
-      password: ''
-    };
-  }
-
+class Login extends Component {
   handleLogin = async e => {
-    e.preventDefault();
-    console.log(this.props,1111)
-    // this.props.isAuthenticated = true;
-    this.props.history.push('/')
+    e.preventDefault()
+    // this.props.state.auth.dispatch('login', { token: 11111 })
+    const loginData = {
+      login_id: 'neolab',
+      password: 'Abcd@1234'
+    }
+    this.props.dispatch(login(loginData))
+    this.props.userHasAuthenticated(true);
   }
 
   render() {
@@ -24,6 +21,10 @@ export default class Login extends Component {
         <h1>login page</h1>
         <button onClick={this.handleLogin}>Login</button>
       </div>
-    );
+    )
   }
 }
+
+export default connect((state)=> {
+  return { auth: state.auth }
+})(Login)

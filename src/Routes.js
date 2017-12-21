@@ -1,18 +1,18 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import asyncComponent from './components/auth/AsyncComponent';
-import AppliedRoute from './components/auth/AppliedRoute';
-import AuthenticatedRoute from './components/auth/AuthenticatedRoute';
-import UnauthenticatedRoute from './components/auth/UnauthenticatedRoute';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import asyncComponent from './components/auth/AsyncComponent'
+// import AppliedRoute from './components/auth/AppliedRoute'
+import AuthenticatedRoute from './components/auth/AuthenticatedRoute'
+import UnauthenticatedRoute from './components/auth/UnauthenticatedRoute'
 
-const AsyncHome = asyncComponent(() => import('./components/applications/Home'));
-const AsyncLogin = asyncComponent(() => import('./components/applications/Login'));
-const AsyncNotFound = asyncComponent(() => import('./components/applications/NotFound'));
-const AsyncAuth = asyncComponent(() => import('./components/applications/Auth'));
+const AsyncHome = asyncComponent(() => import('./components/applications/Home'))
+const AsyncLogin = asyncComponent(() => import('./components/applications/Login'))
+const AsyncNotFound = asyncComponent(() => import('./components/applications/NotFound'))
+const AsyncAuth = asyncComponent(() => import('./components/applications/Auth'))
 
 export default ({ childProps }) =>
   <Switch>
-    <AppliedRoute
+    <AuthenticatedRoute
       path='/'
       exact
       component={AsyncHome}
@@ -33,4 +33,4 @@ export default ({ childProps }) =>
     {/* Finally, catch all unmatched routes */}
     <Route component={AsyncNotFound} />
   </Switch>
-;
+

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 export default class Auth extends Component {
   render() {
@@ -6,6 +6,6 @@ export default class Auth extends Component {
       <div>
         <h1>Unauth</h1>
       </div>
-    );
+    )
   }
 }
