@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Http = axios.create({
-  baseURL: 'https://c2a-dev.calling.fun/api/v2',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'content-type': 'application/json'
   }
