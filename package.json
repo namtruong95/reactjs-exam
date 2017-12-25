@@ -12,6 +12,7 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "serve": "^6.4.3"
@@ -25,6 +26,9 @@
     "build": "npm-run-all build-css build-js",
     "serve:build": "serve -s build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "http://namzee-repos.github.io/reactjs-exam"
 }
