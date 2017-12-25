@@ -3,6 +3,12 @@ import { connect } from 'react-redux'
 import { login } from '../../actions/auth';
 
 class Login extends Component {
+
+  constructor() {
+    super()
+    document.title = 'LOGIN page'
+  }
+
   handleLogin = async (e) => {
     e.preventDefault()
     // this.props.state.auth.dispatch('login', { token: 11111 })
