@@ -9,6 +9,7 @@ import App from './App'
 
 import registerServiceWorker from './registerServiceWorker'
 
+import './styles/index.css'
 ReactDOM.render(
   <Router>
     <Provider store={store}>
