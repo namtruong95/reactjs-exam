@@ -1,6 +1,7 @@
-import {ActionTypes} from '../utils/ActionTypes'
+import Http from './api';
 
-export function login(loginData) {
-  // console.log(loginData, 'call api')
-  return { type: ActionTypes.LOGIN, token: '111111' }
+async function login(loginData) {
+  return await Http.post('oauth/login', loginData)
 }
+
+export { login }

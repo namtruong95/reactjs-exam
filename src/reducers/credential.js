@@ -1,13 +1,12 @@
 import {ActionTypes} from '../utils/ActionTypes'
 
-const auth = (state = {}, action) => {
+const credential = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.LOGIN:
       return {
         ...state,
-        credential: {
-          token: action.token
-        }
+        token: action.token,
+        token_type: action.token_type
       }
 
     default:
@@ -15,4 +14,4 @@ const auth = (state = {}, action) => {
   }
 }
 
-export default auth
+export default credential
