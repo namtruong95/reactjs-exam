@@ -3,6 +3,6 @@ import reducers from '../reducers'
 
 let store = createStore(reducers, compose(
   window.devToolsExtension? window.devToolsExtension(): f => f
-));
+))
 
-export default store;
+export default store

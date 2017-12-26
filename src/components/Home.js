@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { getThreads } from '../actions/thread';
+import { getThreads } from '../actions/thread'
 
 export default class Home extends Component {
   constructor() {
@@ -8,8 +8,8 @@ export default class Home extends Component {
   }
 
   async getThreads(e) {
-    e.preventDefault();
-    const threads = await getThreads();
+    e.preventDefault()
+    const threads = await getThreads()
     console.log(threads, 1111)
   }
 

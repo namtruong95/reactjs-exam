@@ -5,6 +5,6 @@ const Http = axios.create({
   headers: {
     'content-type': 'application/json'
   }
-});
+})
 
 export default Http

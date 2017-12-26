@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../actions/auth';
+import { login } from '../actions/auth'
 
 class Login extends Component {
 
@@ -13,9 +13,10 @@ class Login extends Component {
     e.preventDefault()
     // this.props.state.auth.dispatch('login', { token: 11111 })
     const loginData = {
-      login_id: 'neolab',
-      password: 'Abcd@1234'
+      login_id: this.refs.login_id.value,
+      password: this.refs.password.value
     }
+
     const loginResult = await login(loginData)
     if (loginResult.status === 200) {
       this.props.dispatch({
@@ -47,8 +48,32 @@ class Login extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>login page</h1>
-        <button onClick={this.handleLogin}>Login</button>
+        <form>
+          <h1>login page</h1>
+          <div className="field">
+            <label htmlFor="login_id">login id</label>
+            <input id="login_id"
+              type="text"
+              name="login_id"
+              ref="login_id"
+              required
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="password">password</label>
+            <input id="password"
+              type="password"
+              name="password"
+              ref="password"
+              required
+            />
+          </div>
+          <button onClick={this.handleLogin}
+            disabled>
+            Login
+          </button>
+        </form>
       </React.Fragment>
     )
   }

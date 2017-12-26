@@ -7,9 +7,9 @@ async function getThreads() {
     const credential = store.getState().credential
     Http.defaults.headers.common.authorization = `${credential.token_type} ${credential.token}`
 
-    return await Http.get('threads');
+    return await Http.get('threads')
   }
-  return;
+  return
 }
 
 export { getThreads }
