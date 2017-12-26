@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { getThreads } from '../../actions/thread';
+import { getThreads } from '../actions/thread';
 
 export default class Home extends Component {
   constructor() {
@@ -15,10 +15,10 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>Home</h1>
         <button onClick={this.getThreads}>get Threads</button>
-      </div>
+      </React.Fragment>
     )
   }
 }

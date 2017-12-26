@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 import { withRouter } from "react-router-dom"
 
-import Routes from "./Routes"
+import Routes from "./routes"
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Routes />
-      </div>
+      </React.Fragment>
     )
   }
 }

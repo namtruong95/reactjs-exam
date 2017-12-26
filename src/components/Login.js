@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../../actions/auth';
+import { login } from '../actions/auth';
 
 class Login extends Component {
 
@@ -46,10 +46,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>login page</h1>
         <button onClick={this.handleLogin}>Login</button>
-      </div>
+      </React.Fragment>
     )
   }
 }

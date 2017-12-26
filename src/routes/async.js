@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-function asyncComponent(importComponent) {
+function async(importComponent) {
   class AsyncComponent extends Component {
     constructor(props) {
       super(props)
@@ -28,4 +28,4 @@ function asyncComponent(importComponent) {
   return AsyncComponent
 }
 
-export default asyncComponent
+export default async
