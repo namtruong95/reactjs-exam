@@ -48,7 +48,7 @@ class Login extends Component {
   render() {
     return (
       <React.Fragment>
-        <form>
+        <form className="ui form container">
           <h1>login page</h1>
           <div className="field">
             <label htmlFor="login_id">login id</label>
@@ -70,7 +70,7 @@ class Login extends Component {
             />
           </div>
           <button onClick={this.handleLogin}
-            disabled>
+            className="ui button primary">
             Login
           </button>
         </form>

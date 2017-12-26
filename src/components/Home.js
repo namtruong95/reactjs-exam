@@ -17,7 +17,7 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <h1>Home</h1>
-        <button onClick={this.getThreads}>get Threads</button>
+        <button className="ui button primary" onClick={this.getThreads}>get Threads</button>
       </React.Fragment>
     )
   }
