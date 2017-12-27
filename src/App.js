@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import { withRouter } from "react-router-dom"
+import { withRouter } from 'react-router-dom'
 
-import Routes from "./routes"
+import Routes from './routes'
 
 class App extends Component {
   render() {

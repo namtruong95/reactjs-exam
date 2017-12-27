@@ -13,8 +13,8 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this)
 
     this.state = {
-      login_id: '',
-      password: ''
+      login_id: 'neolab',
+      password: 'Abcd@1234'
     }
   }
 
@@ -54,7 +54,7 @@ class Login extends React.Component {
             required={true}
             maxLength={255}
             valid={true}
-            ref="login_id"
+            ref={'login_id'}
           />
 
           <TextInput
@@ -64,7 +64,7 @@ class Login extends React.Component {
             required={true}
             maxLength={255}
             valid={true}
-            ref="password"
+            ref={'password'}
           />
 
           <button onClick={this.handleLogin}

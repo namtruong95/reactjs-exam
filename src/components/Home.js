@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { getThreads } from '../actions/thread'
 
 class Home extends React.Component {
@@ -17,7 +17,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <h1>Home</h1>
-        <button className="ui button primary" onClick={this.getThreads}>get Threads</button>
+        <button className='ui button primary' onClick={this.getThreads}>get Threads</button>
       </React.Fragment>
     )
   }
