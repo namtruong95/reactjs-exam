@@ -8,7 +8,6 @@ class Login extends React.Component {
 
   constructor() {
     super()
-    document.title = 'LOGIN page'
 
     this.handleLogin = this.handleLogin.bind(this)
 
@@ -16,6 +15,16 @@ class Login extends React.Component {
       login_id: 'neolab',
       password: 'Abcd@1234'
     }
+  }
+
+  componentWillMount() {
+    if (this.props.credential.hasOwnProperty('token')) {
+      this.props.history.push(queryString('redirect'))
+    }
+  }
+
+  componentDidMount() {
+    document.title = 'Login page'
   }
 
   async handleLogin(e) {
@@ -77,4 +86,6 @@ class Login extends React.Component {
   }
 }
 
-export default connect()(Login)
+export default connect(function (state) {
+  return {credential: state.credential}
+})(Login)

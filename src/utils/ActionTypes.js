@@ -1,3 +1,4 @@
 export const ActionTypes = {
-  LOGIN: 'login'
+  LOGIN: 'login',
+  CURRENT_USER: 'current:user'
 }
