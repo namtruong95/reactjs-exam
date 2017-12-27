@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React from "react"
 import { getThreads } from '../actions/thread'
 
-export default class Home extends Component {
+class Home extends React.Component {
   constructor() {
     super()
     document.title = 'Home'
@@ -22,3 +22,5 @@ export default class Home extends Component {
     )
   }
 }
+
+export default Home

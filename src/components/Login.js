@@ -1,20 +1,32 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { login } from '../actions/auth'
+import React from 'react'
+import {connect} from 'react-redux'
+import {login} from '../actions/auth'
+import queryString from '../utils/queryString'
+import TextInput from './elements/TextInput'
 
-class Login extends Component {
+class Login extends React.Component {
 
   constructor() {
     super()
     document.title = 'LOGIN page'
+
+    this.handleLogin = this.handleLogin.bind(this)
+
+    this.state = {
+      login_id: '',
+      password: ''
+    }
   }
 
-  handleLogin = async (e) => {
+  async handleLogin(e) {
     e.preventDefault()
-    // this.props.state.auth.dispatch('login', { token: 11111 })
+    if (this.refs.login_id.state.valid
+      || this.refs.password.state.valid) {
+      return
+    }
     const loginData = {
-      login_id: this.refs.login_id.value,
-      password: this.refs.password.value
+      login_id: this.refs.login_id.state.value,
+      password: this.refs.password.state.value
     }
 
     const loginResult = await login(loginData)
@@ -25,24 +37,8 @@ class Login extends Component {
         token_type: loginResult.data.token_type
       })
 
-      this.props.history.push(this.querystring('redirect'))
+      this.props.history.push(queryString('redirect'))
     }
-  }
-
-  querystring(name, url = window.location.href) {
-    name = name.replace(/[[]]/g, '\\$&')
-
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)', 'i')
-    const results = regex.exec(url)
-
-    if (!results) {
-      return null
-    }
-    if (!results[2]) {
-      return ''
-    }
-
-    return decodeURIComponent(results[2].replace(/\+/g, ' '))
   }
 
   render() {
@@ -50,25 +46,27 @@ class Login extends Component {
       <React.Fragment>
         <form className="ui form container">
           <h1>login page</h1>
-          <div className="field">
-            <label htmlFor="login_id">login id</label>
-            <input id="login_id"
-              type="text"
-              name="login_id"
-              ref="login_id"
-              required
-            />
-          </div>
 
-          <div className="field">
-            <label htmlFor="password">password</label>
-            <input id="password"
-              type="password"
-              name="password"
-              ref="password"
-              required
-            />
-          </div>
+          <TextInput
+            type={'text'}
+            label={'Login id'}
+            value={this.state.login_id}
+            required={true}
+            maxLength={255}
+            valid={true}
+            ref="login_id"
+          />
+
+          <TextInput
+            type={'password'}
+            label={'Password'}
+            value={this.state.password}
+            required={true}
+            maxLength={255}
+            valid={true}
+            ref="password"
+          />
+
           <button onClick={this.handleLogin}
             className="ui button primary">
             Login
