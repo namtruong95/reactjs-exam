@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import async from './async'
 import AuthenticatedRoute from './AuthenticatedRoute'
-import UnauthenticatedRoute from './UnauthenticatedRoute'
+import AppliedRoute from './AppliedRoute'
 
 const AsyncHome = async(() => import('../components/Home'))
 const AsyncLogin = async(() => import('../components/Login'))
@@ -12,30 +12,25 @@ export default () => {
   return (
     <Switch>
       {/* unauthenticated */}
-      <UnauthenticatedRoute
+      <AppliedRoute
         path='/login'
         exact
         component={AsyncLogin}
       />
       {/* authenticated */}
-      <Route
-        exact path='/' render={() => (
-          <Redirect to="/threads" />
-        )}
-      />
       <AuthenticatedRoute
         path='/threads'
-        exact
         component={AsyncHome}
       />
       <AuthenticatedRoute
-        path='/setting/company'
         exact
+        path='/setting/company'
         component={AsyncCompany}
       />
+      <Redirect from="/" to="/threads" />
       {/* Finally, catch all unmatched routes */}
       <Route render={() => (
-          <Redirect to="/threads" />
+        <Redirect to="/threads" />
         )}
       />
     </Switch>

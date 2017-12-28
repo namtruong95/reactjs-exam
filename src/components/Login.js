@@ -46,7 +46,7 @@ class Login extends React.Component {
         token_type: loginResult.data.token_type
       })
 
-      this.props.history.push(queryString('redirect'))
+      this.props.history.push(queryString('redirect') || '/')
     }
   }
 
