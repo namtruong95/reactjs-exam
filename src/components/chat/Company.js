@@ -1,10 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 class Company extends React.Component {
-  componentDidMount() {
-    document.title = 'Company'
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -14,4 +11,4 @@ class Company extends React.Component {
   }
 }
 
-export default Company
+export default connect()(Company)
