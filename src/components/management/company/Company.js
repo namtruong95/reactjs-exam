@@ -1,8 +1,7 @@
 import React from 'react'
 
 class Company extends React.Component {
-  constructor() {
-    super()
+  componentDidMount() {
     document.title = 'Company'
   }
 
