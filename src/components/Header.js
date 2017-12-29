@@ -21,23 +21,7 @@ class Header extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="header">
-          <div className="logo">
-            <img src={logo} alt=""/>
-          </div>
 
-          <div className="navbar">
-            <ul className="ui horizontal">
-              <NavLink strict className="item link" activeClassName="active" to="/threads">
-                <span>Users</span>
-              </NavLink>
-
-              <NavLink strict className="item link" activeClassName="active" to="/setting/company">
-                <span>Setting</span>
-              </NavLink>
-            </ul>
-          </div>
-        </div>
       </React.Fragment>
     )
   }
