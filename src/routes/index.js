@@ -4,30 +4,30 @@ import async from './async'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import AppliedRoute from './AppliedRoute'
 
-const AsyncHome = async(() => import('../components/Home'))
+const AsyncChatContainer = async(() => import('../components/chat/Container'))
 const AsyncLogin = async(() => import('../components/Login'))
-const AsyncCompany = async(() => import('../components/company/Company'))
+const AsyncCompany = async(() => import('../components/management/company/Company'))
 
 export default () => {
   return (
     <Switch>
       {/* unauthenticated */}
       <AppliedRoute
-        path='/login'
+        path="/login"
         exact
         component={AsyncLogin}
       />
       {/* authenticated */}
       <AuthenticatedRoute
-        path='/threads'
-        component={AsyncHome}
+        path="/threads"
+        component={AsyncChatContainer}
       />
       <AuthenticatedRoute
+        path="/setting/company"
         exact
-        path='/setting/company'
         component={AsyncCompany}
       />
-      <Redirect from="/" to="/threads" />
+
       {/* Finally, catch all unmatched routes */}
       <Route render={() => (
         <Redirect to="/threads" />

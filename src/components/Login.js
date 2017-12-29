@@ -17,15 +17,9 @@ class Login extends React.Component {
     }
   }
 
-  componentWillMount() {
-    if (this.props.credential.hasOwnProperty('token')) {
-      this.props.history.push(queryString('redirect'))
-    }
-  }
-
-  componentDidMount() {
-    document.title = 'Login page'
-  }
+  // componentDidMount() {
+  //   document.title = 'Login page'
+  // }
 
   async handleLogin(e) {
     e.preventDefault()

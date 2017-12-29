@@ -1,0 +1,29 @@
+.header {
+  height: 50px;
+  background: $header-color;
+  padding: 7px 15px;
+
+  .logo img {
+    float: left;
+    height: 35px;
+  }
+
+  .navbar {
+    text-align: right;
+    margin-top: 7px;
+
+    ul {
+      margin: 0;
+    }
+
+    .link {
+      height: 100%;
+      padding: 18px;
+      color: #fff;
+
+      &.active {
+        background: #1487d7;
+      }
+    }
+  }
+}

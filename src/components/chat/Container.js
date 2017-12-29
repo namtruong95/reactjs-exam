@@ -1,20 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getThreads} from '../actions/thread'
 import {Route} from 'react-router-dom'
-import Header from './Header'
-import Thread from './Thread'
 
-class Home extends React.Component {
+import {getThreads} from '../../actions/thread'
+
+import Thread from './Thread'
+import History from './History'
+
+class Container extends React.Component {
   constructor() {
     super()
 
     this.getThreads = this.getThreads.bind(this)
   }
 
-  componentDidMount() {
-    document.title = 'Home'
-  }
+  // componentDidMount() {
+  //   document.title = 'Container'
+  // }
 
   async getThreads(e) {
     e.preventDefault()
@@ -25,11 +27,9 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
-        <h1>Home</h1>
-        <button className='ui button primary' onClick={this.getThreads}>get Threads</button>
+        <Thread />
 
-        <Route path="/threads/:id" component={Thread} />
+        <Route exact path="/threads/:id" component={History} />
       </React.Fragment>
     )
   }
@@ -37,4 +37,4 @@ class Home extends React.Component {
 
 export default connect(function (state) {
   return state
-})(Home)
+})(Container)
