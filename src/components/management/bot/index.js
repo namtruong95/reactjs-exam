@@ -1,13 +1,13 @@
 import React from 'react'
 
-class User extends React.Component {
+class Bot extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>User</h1>
+        <h1>Bots</h1>
       </React.Fragment>
     )
   }
 }
 
-export default User
+export default Bot

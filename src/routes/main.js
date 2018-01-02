@@ -5,8 +5,8 @@ import AuthenticatedRoute from './AuthenticatedRoute'
 
 const AsyncAppChat = async(() => import('../components/chat/AppChat'))
 const AsyncAppManagement = async(() => import('../components/management/AppManagement'))
-const AsyncUser = async(() => import('../components/management/user/User'))
-const AsyncBroadcast = async(() => import('../components/management/broadcast/Broadcast'))
+const AsyncUser = async(() => import('../components/management/user'))
+const AsyncBroadcast = async(() => import('../components/management/broadcast'))
 
 export default () => {
   return (
@@ -15,7 +15,6 @@ export default () => {
 
       <AuthenticatedRoute
         path="/setting"
-        exact
         component={AsyncAppManagement}
       />
 
