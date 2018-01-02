@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {withRouter, NavLink} from 'react-router-dom'
-import RoutesV from '../routes/routes.v4'
+import RoutesMain from '../routes/main'
 
 // import Header from './Header'
 import logo from '../assets/images/calling_logo.svg'
@@ -35,7 +35,7 @@ class Container extends React.Component {
             </div>
           </div>
 
-          <RoutesV />
+          <RoutesMain />
       </React.Fragment>
     )
   }
