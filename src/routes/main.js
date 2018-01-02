@@ -3,9 +3,10 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import async from './async'
 import AuthenticatedRoute from './AuthenticatedRoute'
 
-const AsyncCompany = async(() => import('../components/chat/Company'))
-const AsyncHistory = async(() => import('../components/chat/History'))
-const AsyncThread = async(() => import('../components/chat/Thread'))
+const AsyncAppChat = async(() => import('../components/chat/AppChat'))
+const AsyncAppManagement = async(() => import('../components/management/AppManagement'))
+const AsyncUser = async(() => import('../components/management/user/User'))
+const AsyncBroadcast = async(() => import('../components/management/broadcast/Broadcast'))
 
 export default () => {
   return (
@@ -13,26 +14,32 @@ export default () => {
       {/* authenticated */}
 
       <AuthenticatedRoute
-        path="/company"
+        path="/setting"
         exact
-        component={AsyncCompany}
+        component={AsyncAppManagement}
       />
 
       <AuthenticatedRoute
-        path="/history"
+        path="/broadcasts"
         exact
-        component={AsyncHistory}
+        component={AsyncBroadcast}
       />
 
       <AuthenticatedRoute
-        path="/thread"
+        path="/users"
         exact
-        component={AsyncThread}
+        component={AsyncUser}
+      />
+
+      <AuthenticatedRoute
+        path="/threads"
+        exact
+        component={AsyncAppChat}
       />
 
       {/* Finally, catch all unmatched routes */}
       <Route render={() => (
-        <Redirect to="/company" />
+        <Redirect to="/threads" />
         )}
       />
     </Switch>
