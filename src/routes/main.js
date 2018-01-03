@@ -7,6 +7,7 @@ const AsyncAppChat = async(() => import('../components/chat/AppChat'))
 const AsyncAppManagement = async(() => import('../components/management/AppManagement'))
 const AsyncUser = async(() => import('../components/management/user'))
 const AsyncBroadcast = async(() => import('../components/management/broadcast'))
+const AsyncTreeNode = async(() => import('../components/tree-node'))
 
 export default () => {
   return (
@@ -34,6 +35,12 @@ export default () => {
         path="/threads"
         exact
         component={AsyncAppChat}
+      />
+
+      <AuthenticatedRoute
+        path="/d3"
+        exact
+        component={AsyncTreeNode}
       />
 
       {/* Finally, catch all unmatched routes */}
