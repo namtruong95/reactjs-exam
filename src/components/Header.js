@@ -30,8 +30,11 @@ class Header extends React.Component {
 
           <div className="navbar">
             <ul className="ui horizontal">
+              <NavLink className="link item" strict to="/d3-drag-drop" activeClassName="active">
+                <span>Drag & Drop</span>
+              </NavLink>
               <NavLink className="link item" strict to="/d3" activeClassName="active">
-                <span>D3 Drag & Drop</span>
+                <span>D3</span>
               </NavLink>
               <NavLink className="link item" strict to="/broadcasts" activeClassName="active">
                 <span>Broadcasts</span>

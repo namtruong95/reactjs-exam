@@ -8,6 +8,7 @@ const AsyncAppManagement = async(() => import('../components/management/AppManag
 const AsyncUser = async(() => import('../components/management/user'))
 const AsyncBroadcast = async(() => import('../components/management/broadcast'))
 const AsyncTreeNode = async(() => import('../components/tree-node'))
+const AsyncD3 = async(() => import('../components/d3'))
 
 export default () => {
   return (
@@ -41,6 +42,12 @@ export default () => {
         path="/d3"
         exact
         component={AsyncTreeNode}
+      />
+
+      <AuthenticatedRoute
+        path="/d3-drag-drop"
+        exact
+        component={AsyncD3}
       />
 
       {/* Finally, catch all unmatched routes */}
