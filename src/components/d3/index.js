@@ -21,13 +21,13 @@ class D3 extends React.Component {
       .append("g")
       .attr("transform", `translate(${this.margin.left},${this.margin.top})`)
     // Assigns parent, children, height, depth
-    this.root = d3.hierarchy(data, function(d) { return d.children; });
-    this.root.x0 = this.height / 2;
-    this.root.y0 = 0;
+    this.root = d3.hierarchy(data, (d) => { return d.children })
+    this.root.x0 = this.height / 2
+    this.root.y0 = 0
 
     // Collapse after the second level
-    this.root.children.forEach(d => this.collapse(d));
-    this.update(this.root);
+    this.root.children.forEach(d => this.collapse(d))
+    this.update(this.root)
   }
 
   // Collapse the node and all it's children
@@ -47,7 +47,7 @@ class D3 extends React.Component {
     let nodes = treeData.descendants(),
         links = treeData.descendants().slice(1)
     // Normalize for fixed-depth.
-    nodes.forEach((d) =>{ d.y = d.depth * 180});
+    nodes.forEach((d) =>{ d.y = d.depth * 180})
 
     // ****************** Nodes section ***************************
 
@@ -59,7 +59,7 @@ class D3 extends React.Component {
     let nodeEnter = node.enter().append('g')
       .attr('class', 'node')
       .attr("transform", (d) => {
-        return `translate(${source.y0},${source.x0})`;
+        return `translate(${source.y0},${source.x0})`
       })
       .on('click', (d) => this.click(d))
 
@@ -68,38 +68,38 @@ class D3 extends React.Component {
         .attr('class', 'node')
         .attr('r', 1e-6)
         .style("fill", (d) => {
-            return d._children ? "lightsteelblue" : "#fff";
-        });
+            return d._children ? "lightsteelblue" : "#fff"
+        })
 
     // Add labels for the nodes
     nodeEnter.append('text')
         .attr("dy", ".35em")
         .attr("x", (d) => {
-            return d.children || d._children ? -13 : 13;
+            return d.children || d._children ? -13 : 13
         })
-        .attr("text-anchor", function(d) {
-            return d.children || d._children ? "end" : "start";
+        .attr("text-anchor", (d) => {
+            return d.children || d._children ? "end" : "start"
         })
-        .text((d) => { return d.data.name; });
+        .text((d) => { return d.data.name })
 
     // UPDATE
-    let nodeUpdate = nodeEnter.merge(node);
+    let nodeUpdate = nodeEnter.merge(node)
     // Transition to the proper position for the node
     nodeUpdate.transition()
       .duration(this.duration)
       .attr("transform", (d) => {
-          return "translate(" + d.y + "," + d.x + ")";
-       });
+          return `translate(${d.y},${d.x})`
+       })
 
     // Update the node attributes and style
     nodeUpdate.select('circle.node')
       .attr('r', 10)
       .style("fill", (d) => {
-          return d._children ? "lightsteelblue" : "#fff";
+          return d._children ? "lightsteelblue" : "#fff"
       })
       .attr('cursor', 'pointer')
       .on('contextmenu', (d) => {
-        d3.event.preventDefault();
+        d3.event.preventDefault()
 
         this.rightClick(d)
       })
@@ -109,23 +109,23 @@ class D3 extends React.Component {
     let nodeExit = node.exit().transition()
         .duration(this.duration)
         .attr("transform", (d) => {
-            return `translate(${source.y},${source.x})`;
+            return `translate(${source.y},${source.x})`
         })
-        .remove();
+        .remove()
 
     // On exit reduce the node circles size to 0
     nodeExit.select('circle')
-      .attr('r', 1e-6);
+      .attr('r', 1e-6)
 
     // On exit reduce the opacity of text labels
     nodeExit.select('text')
-      .style('fill-opacity', 1e-6);
+      .style('fill-opacity', 1e-6)
 
     // ****************** links section ***************************
 
     // Update the links...
     let link = this.svg.selectAll('path.link')
-        .data(links, (d) => { return d.id; });
+        .data(links, (d) => { return d.id })
 
     // Enter any new links at the parent's previous position.
     let linkEnter = link.enter().insert('path', "g")
@@ -133,15 +133,15 @@ class D3 extends React.Component {
         .attr('d', (d) => {
           const o = {x: source.x0, y: source.y0}
           return this.diagonal(o, o)
-        });
+        })
 
     // UPDATE
-    let linkUpdate = linkEnter.merge(link);
+    let linkUpdate = linkEnter.merge(link)
 
     // Transition back to the parent element position
     linkUpdate.transition()
         .duration(this.duration)
-        .attr('d', (d) => { return this.diagonal(d, d.parent) });
+        .attr('d', (d) => { return this.diagonal(d, d.parent) })
 
     // Remove any exiting links
     link.exit().transition()
@@ -150,13 +150,13 @@ class D3 extends React.Component {
           const o = { x: source.x, y: source.y }
           return this.diagonal(o, o)
         })
-        .remove();
+        .remove()
 
     // Store the old positions for transition.
     nodes.forEach((d) => {
-      d.x0 = d.x;
-      d.y0 = d.y;
-    });
+      d.x0 = d.x
+      d.y0 = d.y
+    })
   }
 
   rightClick(d) {
@@ -166,13 +166,13 @@ class D3 extends React.Component {
   // Toggle children on click.
   click(d) {
     if (d.children) {
-        d._children = d.children;
-        d.children = null;
+        d._children = d.children
+        d.children = null
       } else {
-        d.children = d._children;
-        d._children = null;
+        d.children = d._children
+        d._children = null
       }
-    this.update(d);
+    this.update(d)
   }
 
   // Creates a curved (diagonal) path from parent to the child nodes
