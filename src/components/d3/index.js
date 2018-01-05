@@ -19,7 +19,7 @@ class D3 extends React.Component {
       .attr("width", this.width + this.margin.right + this.margin.left)
       .attr("height", this.height + this.margin.top + this.margin.bottom)
       .append("g")
-      .attr("transform", `translate(${this.margin.left},${this.margin.top})`)
+      .attr("transform", `translate(${this.margin.top},${this.margin.left})`)
     // Assigns parent, children, height, depth
     this.root = d3.hierarchy(data, (d) => { return d.children })
     this.root.x0 = this.height / 2
@@ -59,7 +59,7 @@ class D3 extends React.Component {
     let nodeEnter = node.enter().append('g')
       .attr('class', 'node')
       .attr("transform", (d) => {
-        return `translate(${source.y0},${source.x0})`
+        return `translate(${source.x0},${source.y0})`
       })
       .on('click', (d) => this.click(d))
 
@@ -73,13 +73,10 @@ class D3 extends React.Component {
 
     // Add labels for the nodes
     nodeEnter.append('text')
-        .attr("dy", ".35em")
-        .attr("x", (d) => {
-            return d.children || d._children ? -13 : 13
+        .attr("dy", (d) => {
+          return d.children || d._children ? -20 : 25
         })
-        .attr("text-anchor", (d) => {
-            return d.children || d._children ? "end" : "start"
-        })
+        .attr("text-anchor", "middle")
         .text((d) => { return d.data.name })
 
     // UPDATE
@@ -88,7 +85,7 @@ class D3 extends React.Component {
     nodeUpdate.transition()
       .duration(this.duration)
       .attr("transform", (d) => {
-          return `translate(${d.y},${d.x})`
+          return `translate(${d.x},${d.y})`
        })
 
     // Update the node attributes and style
@@ -109,7 +106,7 @@ class D3 extends React.Component {
     let nodeExit = node.exit().transition()
         .duration(this.duration)
         .attr("transform", (d) => {
-            return `translate(${source.y},${source.x})`
+            return `translate(${source.x},${source.y})`
         })
         .remove()
 
@@ -177,10 +174,7 @@ class D3 extends React.Component {
 
   // Creates a curved (diagonal) path from parent to the child nodes
   diagonal(s, d) {
-    return `M ${s.y} ${s.x}
-            C ${(s.y + d.y) / 2} ${s.x},
-              ${(s.y + d.y) / 2} ${d.x},
-              ${d.y} ${d.x}`
+    return `M ${s.x} ${s.y} C ${s.x} ${(s.y + d.y) / 2}, ${d.x} ${(s.y + d.y) / 2}, ${d.x} ${d.y}`
   }
 
   render() {
