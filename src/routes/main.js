@@ -9,6 +9,7 @@ const AsyncUser = async(() => import('../components/management/user'))
 const AsyncBroadcast = async(() => import('../components/management/broadcast'))
 const AsyncTreeNode = async(() => import('../components/tree-node'))
 const AsyncD3 = async(() => import('../components/d3'))
+const AsyncZoomer = async(() => import('../components/zoomer'))
 
 export default () => {
   return (
@@ -48,6 +49,12 @@ export default () => {
         path="/d3-drag-drop"
         exact
         component={AsyncD3}
+      />
+
+      <AuthenticatedRoute
+        path="/zoomer"
+        exact
+        component={AsyncZoomer}
       />
 
       {/* Finally, catch all unmatched routes */}
