@@ -7,8 +7,6 @@ const AsyncAppChat = async(() => import('../components/chat/AppChat'))
 const AsyncAppManagement = async(() => import('../components/management/AppManagement'))
 const AsyncUser = async(() => import('../components/management/user'))
 const AsyncBroadcast = async(() => import('../components/management/broadcast'))
-const AsyncTreeNode = async(() => import('../components/tree-node'))
-const AsyncD3 = async(() => import('../components/d3'))
 const AsyncZoomer = async(() => import('../components/zoomer'))
 
 export default () => {
@@ -37,18 +35,6 @@ export default () => {
         path="/threads"
         exact
         component={AsyncAppChat}
-      />
-
-      <AuthenticatedRoute
-        path="/d3"
-        exact
-        component={AsyncTreeNode}
-      />
-
-      <AuthenticatedRoute
-        path="/d3-drag-drop"
-        exact
-        component={AsyncD3}
       />
 
       <AuthenticatedRoute

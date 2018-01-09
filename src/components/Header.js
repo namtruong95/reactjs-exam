@@ -33,12 +33,6 @@ class Header extends React.Component {
               <NavLink className="link item" strict to="/zoomer" activeClassName="active">
                 <span>Zoomer</span>
               </NavLink>
-              <NavLink className="link item" strict to="/d3-drag-drop" activeClassName="active">
-                <span>Drag & Drop</span>
-              </NavLink>
-              <NavLink className="link item" strict to="/d3" activeClassName="active">
-                <span>D3</span>
-              </NavLink>
               <NavLink className="link item" strict to="/broadcasts" activeClassName="active">
                 <span>Broadcasts</span>
               </NavLink>
