@@ -8,7 +8,9 @@ class D3 extends React.Component {
   margin = {top: 20, right: 90, bottom: 30, left: 90}
   width = 960 - this.margin.left - this.margin.right
   height = 900 - this.margin.top - this.margin.bottom
-  svg
+  baseSvg
+  svgGroup
+
   i = 0
   duration = 750
   treemap = d3.tree().size([this.height, this.width])
@@ -18,7 +20,7 @@ class D3 extends React.Component {
     this.width = document.getElementById("Tree").clientWidth - this.margin.left - this.margin.right;
     this.height = document.getElementById("Tree").clientHeight - this.margin.top - this.margin.bottom;
 
-    this.svg = d3.select(this.refTree).append("svg")
+    this.baseSvg = d3.select(this.refTree).append("svg")
       .call(this.zoomListener)
       .attr("width", this.width + this.margin.right + this.margin.left)
       .attr("height", this.height + this.margin.top + this.margin.bottom)
@@ -40,11 +42,11 @@ class D3 extends React.Component {
   zoomListener = d3.zoom().on("zoom", () => this.zoom());
 
   zoom() {
-    this.svg.attr("transform", d3.event.transform)
+    this.baseSvg.attr("transform", d3.event.transform)
   }
 
   centerNode(source) {
-    let t = d3.zoomTransform(this.svg.node());
+    let t = d3.zoomTransform(this.baseSvg.node());
     let y = -source.y0;
     let x = -source.x0;
     x = x * t.k + this.width / 2;
@@ -79,7 +81,7 @@ class D3 extends React.Component {
     // ****************** Nodes section ***************************
 
     // Update the nodes...
-    let node = this.svg.selectAll("g.node")
+    let node = this.baseSvg.selectAll("g.node")
         .data(nodes, (d) => { return d.id || (d.id = ++this.i) })
 
     // Enter any new modes at the parent"s previous position.
@@ -148,7 +150,7 @@ class D3 extends React.Component {
     // ****************** links section ***************************
 
     // Update the links...
-    let link = this.svg.selectAll("path.link")
+    let link = this.baseSvg.selectAll("path.link")
         .data(links, (d) => { return d.id })
 
     // Enter any new links at the parent"s previous position.
