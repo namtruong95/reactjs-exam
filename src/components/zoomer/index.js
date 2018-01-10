@@ -1,7 +1,7 @@
-import React from 'react'
-import './style.css'
-import * as d3 from 'd3'
-import data from './data.json'
+import React from "react"
+import "./style.css"
+import * as d3 from "d3"
+import data from "./data.json"
 
 class D3 extends React.Component {
 
@@ -15,8 +15,8 @@ class D3 extends React.Component {
   root
 
   componentDidMount() {
-    this.width = document.getElementById('Tree').clientWidth - this.margin.left - this.margin.right;
-    this.height = document.getElementById('Tree').clientHeight - this.margin.top - this.margin.bottom;
+    this.width = document.getElementById("Tree").clientWidth - this.margin.left - this.margin.right;
+    this.height = document.getElementById("Tree").clientHeight - this.margin.top - this.margin.bottom;
 
     this.svg = d3.select(this.refTree).append("svg")
       .call(this.zoomListener)
@@ -50,14 +50,14 @@ class D3 extends React.Component {
     x = x * t.k + this.width / 2;
     y = y * t.k + this.height / 2;
 
-    d3.select('svg')
+    d3.select("svg")
       .transition()
       .duration(this.duration)
       .call(this.zoomListener.transform,
         d3.zoomIdentity.translate(x,y).scale(t.k) );
   }
 
-  // Collapse the node and all it's children
+  // Collapse the node and all it"s children
   collapse(d) {
     if(d.children) {
       d._children = d.children
@@ -79,27 +79,27 @@ class D3 extends React.Component {
     // ****************** Nodes section ***************************
 
     // Update the nodes...
-    let node = this.svg.selectAll('g.node')
+    let node = this.svg.selectAll("g.node")
         .data(nodes, (d) => { return d.id || (d.id = ++this.i) })
 
-    // Enter any new modes at the parent's previous position.
-    let nodeEnter = node.enter().append('g')
-      .attr('class', 'node')
+    // Enter any new modes at the parent"s previous position.
+    let nodeEnter = node.enter().append("g")
+      .attr("class", "node")
       .attr("transform", (d) => {
         return `translate(${source.x0},${source.y0})`
       })
-      .on('click', (d) => this.click(d))
+      .on("click", (d) => this.click(d))
 
     // Add Circle for the nodes
-    nodeEnter.append('circle')
-        .attr('class', 'node')
-        .attr('r', 1e-6)
+    nodeEnter.append("circle")
+        .attr("class", "node")
+        .attr("r", 1e-6)
         .style("fill", (d) => {
             return d._children ? "lightsteelblue" : "#fff"
         })
 
     // Add labels for the nodes
-    nodeEnter.append('text')
+    nodeEnter.append("text")
         .attr("dy", (d) => {
           return d.children || d._children ? -20 : 25
         })
@@ -116,13 +116,13 @@ class D3 extends React.Component {
        })
 
     // Update the node attributes and style
-    nodeUpdate.select('circle.node')
-      .attr('r', 10)
+    nodeUpdate.select("circle.node")
+      .attr("r", 10)
       .style("fill", (d) => {
           return d._children ? "lightsteelblue" : "#fff"
       })
-      .attr('cursor', 'pointer')
-      .on('contextmenu', (d) => {
+      .attr("cursor", "pointer")
+      .on("contextmenu", (d) => {
         d3.event.preventDefault()
 
         this.rightClick(d)
@@ -138,23 +138,23 @@ class D3 extends React.Component {
         .remove()
 
     // On exit reduce the node circles size to 0
-    nodeExit.select('circle')
-      .attr('r', 1e-6)
+    nodeExit.select("circle")
+      .attr("r", 1e-6)
 
     // On exit reduce the opacity of text labels
-    nodeExit.select('text')
-      .style('fill-opacity', 1e-6)
+    nodeExit.select("text")
+      .style("fill-opacity", 1e-6)
 
     // ****************** links section ***************************
 
     // Update the links...
-    let link = this.svg.selectAll('path.link')
+    let link = this.svg.selectAll("path.link")
         .data(links, (d) => { return d.id })
 
-    // Enter any new links at the parent's previous position.
-    let linkEnter = link.enter().insert('path', "g")
+    // Enter any new links at the parent"s previous position.
+    let linkEnter = link.enter().insert("path", "g")
         .attr("class", "link")
-        .attr('d', (d) => {
+        .attr("d", (d) => {
           const o = {x: source.x0, y: source.y0}
           return this.diagonal(o, o)
         })
@@ -165,12 +165,12 @@ class D3 extends React.Component {
     // Transition back to the parent element position
     linkUpdate.transition()
         .duration(this.duration)
-        .attr('d', (d) => { return this.diagonal(d, d.parent) })
+        .attr("d", (d) => { return this.diagonal(d, d.parent) })
 
     // Remove any exiting links
     link.exit().transition()
         .duration(this.duration)
-        .attr('d', (d) => {
+        .attr("d", (d) => {
           const o = { x: source.x, y: source.y }
           return this.diagonal(o, o)
         })
